@@ -19,7 +19,7 @@
 			</tr>
 		</thead>
 		<tbody>
-		
+
 			@foreach($users as $user)
 				<tr>
 					<td>{{ $user->id }}</td>
@@ -34,9 +34,11 @@
 					@endif
 					
 					</td>
-						<td><a href="{{ url('admin/users/destroy', $user->id) }}" class="btn btn-danger">Eliminar</a> | 
+						<td><a href="{{ url('admin/users/destroy', $user->id) }}" class="btn btn-danger" onclick="return confirm('Seguro que desea eliminarlo?')">Eliminar</a> | 
 
-						<a href="" class="btn btn-warning">Editar</a> 
+						<a href="{{ url('admin/users/'.$user->id.'/edit') }}" class="btn btn-warning">Editar</a> |
+						<a href="{{ url('admin/users/show',$user->id) }}" class="btn btn-info">Detalles</a> 
+
 					</td>
 				</tr>
 			@endForeach

@@ -14,7 +14,7 @@ class UsersController extends Controller
         //retorna todos los usuarios con paginacion de 5
         $users= User::orderBy('id','ASC')->paginate(10);
         //return view('admin/users/index', $users);
-        flash('Usuarios disponibles en la base de datos')->success();
+        //flash('Usuarios disponibles en la base de datos')->success();
         return view('admin/users/index')->with('users',$users);
 
     }
@@ -37,16 +37,30 @@ class UsersController extends Controller
         return redirect('admin/users');
     }
 
-    public function show()
+    public function show($id)
     {
-       return redirect('admin/users');
+        //dd('Estoy en el metodo show y me llego '.$id);
+        $usuario= new User();
+        $usuario= User::find($id);
+
+        return view('admin/users/show')->with('usuario',$usuario);
+
+       //return redirect('admin/users');
     }
-    public function delete()
-    {
-        dd("Estoy en el delete");
-    }
+    
     public function destroy($id)
     {
-        g
+        $user = new User();
+        $user = User::find($id);
+        $user->delete();
+        flash('ALERTA!!! se ha eliminado el usuario '.$user->name.' de la base de datos')->error();
+        return redirect('admin/users');
+    }
+    public function edit($id)
+    {
+        $usuario= new User();
+        $usuario= User::find($id);
+
+        return view('admin/users/show')->with('usuario',$usuario);
     }
 }

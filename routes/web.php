@@ -22,6 +22,17 @@ Route::group(['prefix'=>'admin'], function(){
  		'uses'=> 'UsersController@destroy',
  		'as'=>		'admin.users.destroy'
  		]);
+
+ 	//agregamos otro route para que pueda mapear y retornar un usuario por medio de get
+ 	Route::get('users/show/{id}',[
+ 		'uses'	=>	'UsersController@show',
+ 		'as'	=>	'admin.user.show'
+ 		]);
+ 	//agregamos otro route para que pueda mapear y retornar un usuario por medio de get
+ 	Route::get('users/edit/{id}',[
+ 		'uses'	=>	'UsersController@edit',
+ 		'as'	=>	'admin.user.edit'
+ 		]);
 });
 
 
