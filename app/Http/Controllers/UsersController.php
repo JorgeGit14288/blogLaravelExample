@@ -63,4 +63,8 @@ class UsersController extends Controller
 
         return view('admin/users/show')->with('usuario',$usuario);
     }
+    public function update(Request $request, $id)
+    {
+        
+    }
 }
